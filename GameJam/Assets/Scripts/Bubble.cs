@@ -11,9 +11,9 @@ public class Bubble : MonoBehaviour {
     public bool isInvincible = false;
     public float InvencibleTime = 1.25f;
 
-    public SpriteRenderer sprite;
-    public Color originColor;
-    public Color originColorTranspararent;
+    private SpriteRenderer sprite;
+    private Color originColor;
+    private Color originColorTranspararent;
 
     private void Start() {
         originSize = transform.localScale;
@@ -31,6 +31,24 @@ public class Bubble : MonoBehaviour {
         transform.localScale = new(
                         originSize.x / life,
                         originSize.y / life);
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.F)) {
+            if (life < 4) {
+                if (!isInvincible) {
+                    isInvincible = true;
+                    life++;
+
+                    transform.localScale = new(
+                        originSize.x / life,
+                        originSize.y / life);
+                    StartCoroutine("TemporalInvencible");
+                }
+            } else {
+                //SceneManager.LoadScene(La concha)
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
