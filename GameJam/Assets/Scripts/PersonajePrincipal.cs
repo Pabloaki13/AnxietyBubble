@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PersonajePrincipal : MonoBehaviour
 {
-    public CameraShake cameraShake; // Referencia al script de shake
+    public Camera MainCamera;
 
     public float moveSpeed = 5f; // Velocidad de movimiento
     private Rigidbody2D rb; // Referencia al Rigidbody2D
@@ -19,7 +20,8 @@ public class PersonajePrincipal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) // Presionar Espacio para activar el shake
         {
-            StartCoroutine(cameraShake.Shake(0.3f, 0.2f)); // Duración 0.5s, Magnitud 0.3
+            StartCoroutine(MainCamera.GetComponent<CameraShake>().Shake(0.3f, 0.2f)); // Duración 0.5s, Magnitud 0.3
+            MainCamera.GetComponent<Camerazoom>().StartZoomIn(-2.0f);
         }
 
         // Leer entrada del usuario
@@ -34,5 +36,14 @@ public class PersonajePrincipal : MonoBehaviour
     {
         // Mover al personaje usando Rigidbody2D
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Person")
+        {
+            StartCoroutine(MainCamera.GetComponent<CameraShake>().Shake(0.3f, 0.2f)); // Duración 0.5s, Magnitud 0.3
+            MainCamera.GetComponent<Camerazoom>().StartZoomIn(-1.0f);
+        }
     }
 }

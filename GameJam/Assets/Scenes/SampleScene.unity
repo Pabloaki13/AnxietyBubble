@@ -123,6 +123,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &107058767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 474115805067662763, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
+  m_PrefabInstance: {fileID: 474115806105610372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &107058772
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107058767}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &107058773
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107058767}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &129143493
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +335,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -378,6 +421,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77f6bffa80f154182514e93e441005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d84c85ad37a3ab44804c69d4d0437a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomDuration: 0.3
+  MainPlayer: {fileID: 1809343550}
 --- !u!1001 &574279959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -919,13 +976,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Person
       objectReference: {fileID: 0}
+    - target: {fileID: 474115805067662763, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
+      propertyPath: m_TagString
+      value: Person
+      objectReference: {fileID: 0}
     - target: {fileID: 474115805067662772, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1809343552}
     - target: {fileID: 474115805067662772, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
+      propertyPath: m_PatrolPatern
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474115805067662772, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
       propertyPath: waypoints.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 474115805067662772, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
       propertyPath: waypoints.Array.data[0]
@@ -950,7 +1015,19 @@ PrefabInstance:
     - target: {fileID: 474115805067662772, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
       propertyPath: waypoints.Array.data[5]
       value: 
-      objectReference: {fileID: 1962201804}
+      objectReference: {fileID: 1674428309}
+    - target: {fileID: 474115805067662773, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 474115805067662773, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474115805067662773, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
+      propertyPath: m_Color.r
+      value: 0.85406685
+      objectReference: {fileID: 0}
     - target: {fileID: 474115805067662774, guid: 826ed925da8769d41afa4b9048c32aec, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1049,12 +1126,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2289544665984228643, guid: 45e0140d3c2db494592c6ece23ac4abe, type: 3}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 2289544665984228643, guid: 45e0140d3c2db494592c6ece23ac4abe, type: 3}
       propertyPath: cameraShake
       value: 
       objectReference: {fileID: 519420033}
     - target: {fileID: 2289544665984228700, guid: 45e0140d3c2db494592c6ece23ac4abe, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406669300588657457, guid: 45e0140d3c2db494592c6ece23ac4abe, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e0140d3c2db494592c6ece23ac4abe, type: 3}
