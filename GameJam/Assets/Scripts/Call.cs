@@ -18,7 +18,8 @@ public class Call : MonoBehaviour {
         if (collision.collider.CompareTag("CabinCall")) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (isCallable) {
-                    Bubble.GetComponent<Bubble>().heal();
+                    isCallable = false;
+                    StartCoroutine("CallForHealth");
                 }
             }
         }
