@@ -27,7 +27,7 @@ public class Audio : MonoBehaviour {
             PlaySFX("steps");
         }
         if (Input.GetKeyDown(KeyCode.L)) {
-            PlaySFX("shopcardpush");
+            PlaySFX("shopCardPush");
         }
         if (Input.GetKeyDown(KeyCode.Q)) {
             PlayMusic("Shop");
@@ -86,13 +86,13 @@ public class Audio : MonoBehaviour {
 
     private void LoadClipsSFX() {
         clipsSFX["babycry"] = Resources.Load<AudioClip>("SFX/baby-crying-64996");
-        clipsSFX["crowd"] = Resources.Load<AudioClip>("SFX/crowd_shouting");
+        clipsSFX["mercadona"] = Resources.Load<AudioClip>("SFX/supermercadoost");
         clipsSFX["steps"] = Resources.Load<AudioClip>("SFX/foot-steps-250627");
-        clipsSFX["shopcardpush"] = Resources.Load<AudioClip>("SFX/pushing-grocery-cart-63821");
+        clipsSFX["shopCardPush"] = Resources.Load<AudioClip>("SFX/pushing-grocery-cart-63821");
 
         clipsSFX["doorbell"] = Resources.Load<AudioClip>("SFX/doorbell");
-        clipsSFX["bubblepop"] = Resources.Load<AudioClip>("SFX/bubble-pops-272427");
-        clipsSFX["phonecall"] = Resources.Load<AudioClip>("SFX/phone-call-71976");
+        clipsSFX["bubblePop"] = Resources.Load<AudioClip>("SFX/bubble-pops-272427");
+        clipsSFX["phoneCall"] = Resources.Load<AudioClip>("SFX/phone-call-71976");
 
         foreach (var clip in clipsSFX) {
             if (clip.Value == null) Debug.LogWarning("LoadClipsSFX; File of key " + clip.Key + " not detected");
