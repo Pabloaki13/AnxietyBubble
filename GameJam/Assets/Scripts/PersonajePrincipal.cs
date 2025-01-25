@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PersonajePrincipal : MonoBehaviour
 {
+    public CameraShake cameraShake; // Referencia al script de shake
 
     public float moveSpeed = 5f; // Velocidad de movimiento
     private Rigidbody2D rb; // Referencia al Rigidbody2D
@@ -16,6 +17,11 @@ public class PersonajePrincipal : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space)) // Presionar Espacio para activar el shake
+        {
+            StartCoroutine(cameraShake.Shake(0.3f, 0.2f)); // Duración 0.5s, Magnitud 0.3
+        }
+
         // Leer entrada del usuario
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
