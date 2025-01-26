@@ -16,7 +16,7 @@ public class Dialogs : MonoBehaviour
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isSkippable) {
-                SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene(1);
             }
         }
         

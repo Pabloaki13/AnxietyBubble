@@ -29,7 +29,7 @@ public class Camerazoom : MonoBehaviour
             float newSize = Mathf.MoveTowards(currentSize, targetSize, zoomSpeed * Time.deltaTime);
 
             if (newSize <= 1)
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(3);
 
             if (GetComponent<Camera>().orthographic)
                 GetComponent<Camera>().orthographicSize = newSize;

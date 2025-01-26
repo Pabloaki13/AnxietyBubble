@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PersonajePrincipal : MonoBehaviour
 {
     public Camera MainCamera;
+    public GameObject space;
 
     public float moveSpeed = 5f; // Velocidad de movimiento
     private Rigidbody2D rb; // Referencia al Rigidbody2D
@@ -32,6 +33,7 @@ public class PersonajePrincipal : MonoBehaviour
 
     void Start()
     {
+        space.SetActive(false);
         canvas = GameObject.Find("Canvas");
         rb = GetComponent<Rigidbody2D>();
     }
@@ -45,8 +47,8 @@ public class PersonajePrincipal : MonoBehaviour
                 case "Tomates":                   
                     if(!tomates)
                     {
-                    //barra.transform.position = this.transform.position + new Vector3(0,1,0); 
-                                             
+                        //barra.transform.position = this.transform.position + new Vector3(0,1,0); 
+                        space.SetActive(true);
                         barra = Instantiate(BarraCarga);
                         barra.GetComponentInChildren<PlayerGrab>().player = this.gameObject;
                         barra.GetComponentInChildren<PlayerGrab>().type = "Tomates";
@@ -56,7 +58,7 @@ public class PersonajePrincipal : MonoBehaviour
                     if (!galletas)
                     {
                         //barra.transform.position = this.transform.position + new Vector3(0,1,0); 
-
+                        space.SetActive(true);
                         barra = Instantiate(BarraCarga);
                         barra.GetComponentInChildren<PlayerGrab>().player = this.gameObject;
                         barra.GetComponentInChildren<PlayerGrab>().type = "Galletas";
@@ -67,7 +69,7 @@ public class PersonajePrincipal : MonoBehaviour
                     if (!leche)
                     {
                         //barra.transform.position = this.transform.position + new Vector3(0,1,0); 
-
+                        space.SetActive(true);
                         barra = Instantiate(BarraCarga);
                         barra.GetComponentInChildren<PlayerGrab>().player = this.gameObject;
                         barra.GetComponentInChildren<PlayerGrab>().type = "Leche";
@@ -79,7 +81,7 @@ public class PersonajePrincipal : MonoBehaviour
                         if (!pagar)
                         {
                             //barra.transform.position = this.transform.position + new Vector3(0,1,0); 
-
+                            space.SetActive(true);
                             barra = Instantiate(BarraCarga);
                             barra.GetComponentInChildren<PlayerGrab>().player = this.gameObject;
                             barra.GetComponentInChildren<PlayerGrab>().type = "Pagar";
@@ -113,8 +115,8 @@ public class PersonajePrincipal : MonoBehaviour
         }
         if(collision.gameObject.tag == "Interactable")
         {
-            
-            current_interactable = collision.gameObject;
+         
+         current_interactable = collision.gameObject;
 
         }
     }
@@ -123,7 +125,8 @@ public class PersonajePrincipal : MonoBehaviour
     {
         if (collision.gameObject.tag == "Interactable")
         {
-            if(barra)
+            space.SetActive(false);
+            if (barra)
             { 
                 barra.SetActive(false);
                 Destroy(barra);
@@ -151,8 +154,8 @@ public class PersonajePrincipal : MonoBehaviour
                 break;
             case "Pagar":
                 PagarText.text = $"<s>{PagarText.text}</s>";
-                pagar = true;
-                SceneManager.LoadScene(3);
+                pagar = true;               
+                SceneManager.LoadScene(2);
                 break;
 
         }
