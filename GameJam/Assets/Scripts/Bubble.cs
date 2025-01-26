@@ -33,28 +33,11 @@ public class Bubble : MonoBehaviour {
                         originSize.y / life);
     }
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.F)) {
-            if (life < 4) {
-                if (!isInvincible) {
-                    isInvincible = true;
-                    life++;
-
-                    transform.localScale = new(
-                        originSize.x / life,
-                        originSize.y / life);
-                    StartCoroutine("TemporalInvencible");
-                }
-            } else {
-                //SceneManager.LoadScene(La concha)
-            }
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.CompareTag("Enemy")) {
             if (life < 4) {
                 if (isInvincible) {
+                    Audio.instance.PlaySFX("mercadona");
                     life++;
                     isInvincible = true;
 
@@ -64,13 +47,12 @@ public class Bubble : MonoBehaviour {
                     StartCoroutine("TemporalInvencible");
                 }
             } else {
-                //SceneManager.LoadScene(La concha)
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
 
     IEnumerator TemporalInvencible() {
-        Debug.Log("empezó");
         for(int a = 0; a  <2; a++) {
             sprite.color = originColorTranspararent;
             yield return new WaitForSecondsRealtime(InvencibleTime / 5);

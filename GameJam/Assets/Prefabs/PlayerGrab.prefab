@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6866100909440763307}
   - component: {fileID: 699685026}
   m_Layer: 5
-  m_Name: PrefabPlayerGrabbing
+  m_Name: PlayerGrab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
