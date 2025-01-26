@@ -82,6 +82,9 @@ public class Audio : MonoBehaviour {
 
         clipsSFX["doorbell"] = Resources.Load<AudioClip>("SFX/doorbell");
         clipsSFX["bubblePop"] = Resources.Load<AudioClip>("SFX/bubble-pops-272427");
+
+        clipsSFX["breathSoft"] = Resources.Load<AudioClip>("SFX/Breathing Soft");
+        clipsSFX["breathHard"] = Resources.Load<AudioClip>("SFX/Breathing Hard");
         clipsSFX["phoneCall"] = Resources.Load<AudioClip>("SFX/phone-call-71976");
 
         foreach (var clip in clipsSFX) {
