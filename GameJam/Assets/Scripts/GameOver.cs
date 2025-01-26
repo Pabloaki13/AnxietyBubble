@@ -30,12 +30,12 @@ public class GameOver : MonoBehaviour {
     }
     
     void BackToTitle() {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Intro");
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space) && isSkippable) {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Intro");
         }
     }
 
