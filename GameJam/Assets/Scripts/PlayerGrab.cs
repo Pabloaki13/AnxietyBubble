@@ -12,8 +12,11 @@ public class PlayerGrab : MonoBehaviour {
     public float startBar = 0.1f;
     public float start = 0;
     public float increase = 5000f;
-    public float decrease = 5000f;
+    public float decrease = 2500f;
     public float target = 1;
+
+    private bool isBabycryLoading = false;
+    public float babycryAfter = 2.5f;
 
     void Start() {
         bar = GetComponent<Image>();
@@ -30,13 +33,21 @@ public class PlayerGrab : MonoBehaviour {
                 bar.fillAmount += increase * Time.deltaTime * 25;
                 yield return new WaitForEndOfFrame();
             } else {
-                // Bieeeen! Conseguiste el coso!!!
-                Destroy(gameObject);
+                if (!isBabycryLoading) {
+                    isBabycryLoading = true;
+                    gameObject.GetComponent<Renderer>().enabled = false;
+                    yield return new WaitForSecondsRealtime(babycryAfter);
+                    Audio.instance.PlaySFX("babycry");
+                    yield return new WaitForSecondsRealtime(10.5f);
+                    Destroy(gameObject);
+                }
             }
         } else {
             if (bar.fillAmount > start) {
-                bar.fillAmount -= decrease * Time.deltaTime * 12.5f;
-                yield return new WaitForEndOfFrame();
+                if (!isBabycryLoading) {
+                    bar.fillAmount -= decrease * Time.deltaTime * 25;
+                    yield return new WaitForEndOfFrame();
+                }
             } else {
                 Destroy(gameObject);
             }
