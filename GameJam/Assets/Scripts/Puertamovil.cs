@@ -33,6 +33,8 @@ public class Puertamovil : MonoBehaviour
         Vector3 originalPosition = transform.localPosition; // Guardar la posición original de la cámara
         float elapsed = 0f;
 
+        Audio.instance.PlaySFX("doorbell");
+
         while (transform.position.x < OpenPos.x)
         {
 
