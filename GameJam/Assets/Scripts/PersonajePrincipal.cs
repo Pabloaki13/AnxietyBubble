@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class PersonajePrincipal : MonoBehaviour
 {
@@ -10,6 +11,21 @@ public class PersonajePrincipal : MonoBehaviour
     public float moveSpeed = 5f; // Velocidad de movimiento
     private Rigidbody2D rb; // Referencia al Rigidbody2D
     private Vector2 moveDirection; // Dirección del movimiento
+
+
+
+    bool tomates = false;
+    bool platanos = false;
+    bool leche = false;
+    bool pagar = false;
+
+
+    public TMP_Text TomateText;
+    public TMP_Text GalletasText;
+    public TMP_Text LecheText;
+    public TMP_Text PagarText;
+
+    GameObject current_interactable = null;
 
     void Start()
     {
@@ -20,8 +36,21 @@ public class PersonajePrincipal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) // Presionar Espacio para activar el shake
         {
-            StartCoroutine(MainCamera.GetComponent<CameraShake>().Shake(0.3f, 0.2f)); // Duración 0.5s, Magnitud 0.3
-            MainCamera.GetComponent<Camerazoom>().StartZoomIn(-2.0f);
+            switch(current_interactable.name)
+            {
+                case "Tomates":
+                    TomateText.text = $"<s>{TomateText.text}</s>";
+                    break;
+                case "Galletas":
+                    GalletasText.text = $"<s>{GalletasText.text}</s>";
+                    break;
+                case "Leche":
+                    LecheText.text = $"<s>{LecheText.text}</s>";
+                    break;
+                case "Pagar":
+                    PagarText.text = $"<s>{PagarText.text}</s>";
+                    break;
+            }
         }
 
         // Leer entrada del usuario
@@ -44,6 +73,18 @@ public class PersonajePrincipal : MonoBehaviour
         {
             StartCoroutine(MainCamera.GetComponent<CameraShake>().Shake(0.3f, 0.2f)); // Duración 0.5s, Magnitud 0.3
             MainCamera.GetComponent<Camerazoom>().StartZoomIn(-1.0f);
+        }
+        if(collision.gameObject.tag == "Interactable")
+        {
+            current_interactable = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.tag == "Interactable")
+        {
+            current_interactable = null;
         }
     }
 }

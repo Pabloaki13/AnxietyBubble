@@ -103,7 +103,7 @@ MonoBehaviour:
   m_PatrolPatern: 0
   target: {fileID: 0}
   waypoints: []
-  stoppingDistance: 0.1
+  stoppingDistance: 1
 --- !u!195 &474115805067662775
 NavMeshAgent:
   m_ObjectHideFlags: 0
