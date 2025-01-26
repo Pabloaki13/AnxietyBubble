@@ -136,6 +136,11 @@ public class Audio : MonoBehaviour {
             foreach (AudioSource player in sourceSFX) {
                 if (player.isPlaying == false) {
                     player.clip = clipsSFX[clipName];
+                    if (clipName == "shopCardPush") {
+                        player.volume = 0.30f;
+                    } else {
+                        player.volume = 1;
+                    }
                     player.Play();
                     isSFXPlaying = true;
                     break;
