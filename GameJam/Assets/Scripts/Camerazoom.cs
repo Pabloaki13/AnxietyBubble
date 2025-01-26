@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Camerazoom : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class Camerazoom : MonoBehaviour
             float currentSize = GetComponent<Camera>().orthographic ? GetComponent<Camera>().orthographicSize : GetComponent<Camera>().fieldOfView;
             float newSize = Mathf.MoveTowards(currentSize, targetSize, zoomSpeed * Time.deltaTime);
 
+            if (newSize <= 1)
+                SceneManager.LoadScene(4);
+
             if (GetComponent<Camera>().orthographic)
                 GetComponent<Camera>().orthographicSize = newSize;
             else
@@ -47,11 +51,12 @@ public class Camerazoom : MonoBehaviour
         float currentSize = GetComponent<Camera>().orthographic ? GetComponent<Camera>().orthographicSize : GetComponent<Camera>().fieldOfView;
         zoomSpeed = Mathf.Abs(currentSize - targetSize) / zoomDuration;
         isZooming = true;
+            
         }
     }
     public void StartZoomOut(float newTargetSize)
     {
-        targetSize = targetSize + newTargetSize;
+        targetSize = newTargetSize;
         float currentSize = GetComponent<Camera>().orthographic ? GetComponent<Camera>().orthographicSize : GetComponent<Camera>().fieldOfView;
         zoomSpeed = Mathf.Abs(currentSize - targetSize) / zoomDuration;
         isZooming = true;

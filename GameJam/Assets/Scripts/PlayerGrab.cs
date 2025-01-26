@@ -35,6 +35,8 @@ public class PlayerGrab : MonoBehaviour {
     }
 
     IEnumerator barCharge() {
+        if (bar.fillAmount >= target)
+            player.GetComponent<PersonajePrincipal>().fin_de_barra(type);
         if (Input.GetKey(KeyCode.Space)) {
             if (bar.fillAmount < target) {
                 bar.fillAmount += increase * Time.deltaTime * 25;
@@ -51,7 +53,7 @@ public class PlayerGrab : MonoBehaviour {
                         Audio.instance.PlaySFX("shopCardPush");
                     }
                     yield return new WaitForSecondsRealtime(10.5f);
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                 }
                 
                 
@@ -63,11 +65,11 @@ public class PlayerGrab : MonoBehaviour {
                     yield return new WaitForEndOfFrame();
                 }
             } else {
-                player.GetComponent<PersonajePrincipal>().fin_de_barra(type);
-                Destroy(gameObject);
+                
+                //Destroy(gameObject);
             }
-            player.GetComponent<PersonajePrincipal>().fin_de_barra(type);
-            Destroy(this);
+            //player.GetComponent<PersonajePrincipal>().fin_de_barra(type);
+            //Destroy(this);
         }
     }
 }

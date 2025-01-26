@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Person
   - Interactable
+  - CabineCall
   layers:
   - Default
   - TransparentFX

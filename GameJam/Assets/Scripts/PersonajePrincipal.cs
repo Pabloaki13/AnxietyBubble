@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PersonajePrincipal : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class PersonajePrincipal : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Presionar Espacio para activar el shake
+        if (Input.GetKeyDown(KeyCode.Space) && current_interactable) // Presionar Espacio para activar el shake
         {
             switch(current_interactable.name)
             {
@@ -151,6 +152,7 @@ public class PersonajePrincipal : MonoBehaviour
             case "Pagar":
                 PagarText.text = $"<s>{PagarText.text}</s>";
                 pagar = true;
+                SceneManager.LoadScene(3);
                 break;
 
         }
