@@ -94,3 +94,4 @@ MonoBehaviour:
   increase: 0.01
   decrease: 0.01
   target: 1
+  audioAfter: 2.5

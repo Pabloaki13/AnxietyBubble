@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class PlayerGrab : MonoBehaviour {
 
     private bool isAudioLoading = false;
     public float audioAfter = 2.5f;
+    public GameObject player;
+    public string type = "";
 
     void Start() {
         bar = GetComponent<Image>();
@@ -24,6 +27,10 @@ public class PlayerGrab : MonoBehaviour {
     }
 
     private void Update() {
+        StartCoroutine("barCharge");
+    }
+    public void StartBar()
+    {
         StartCoroutine("barCharge");
     }
 
@@ -38,7 +45,7 @@ public class PlayerGrab : MonoBehaviour {
                     gameObject.GetComponent<Image>().enabled = false;
                     yield return new WaitForSecondsRealtime(audioAfter);
                     
-                    if (Random.Range(0, 100) > 50) {
+                    if (UnityEngine.Random.Range(0, 100) > 50) {
                         Audio.instance.PlaySFX("babycry");
                     } else {
                         Audio.instance.PlaySFX("shopCardPush");
@@ -46,6 +53,8 @@ public class PlayerGrab : MonoBehaviour {
                     yield return new WaitForSecondsRealtime(10.5f);
                     Destroy(gameObject);
                 }
+                
+                
             }
         } else {
             if (bar.fillAmount > start) {
@@ -54,8 +63,11 @@ public class PlayerGrab : MonoBehaviour {
                     yield return new WaitForEndOfFrame();
                 }
             } else {
+                player.GetComponent<PersonajePrincipal>().fin_de_barra(type);
                 Destroy(gameObject);
             }
+            player.GetComponent<PersonajePrincipal>().fin_de_barra(type);
+            Destroy(this);
         }
     }
 }
