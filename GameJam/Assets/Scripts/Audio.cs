@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Audio : MonoBehaviour {
 
@@ -59,19 +60,28 @@ public class Audio : MonoBehaviour {
                 }
             }
         }
-	sourceMusic[0].loop = true;
+	    sourceMusic[0].loop = true;
 
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "SuperMArket") {
+            StartCoroutine("ShoppingMusic");
+        } else if (scene.name == "SuperMArket") {
+            StartCoroutine("IntroMusic");
+        }
         //StartCoroutine("music"); //Ex: Multiple music plays feature (if not waiting for scene load, all audio sources say ".isPlaying = true")
     }
 
-    /*IEnumerator music() { //if not waiting, all audio souces say '.isPlaying = true', no joke
-        yield return new WaitForSeconds(2f);
-        PlayMusic("MainTheme");
-        yield return new WaitForSeconds(2f);
-        PlayMusic("MainTheme", false);
-        yield return new WaitForSeconds(2f);
-        PlayMusic("MainTheme", false);
-    }*/
+    //if not waiting, all audio souces say '.isPlaying = true', no joke
+    IEnumerator ShoppingMusic() { 
+        yield return new WaitForSeconds(2);
+        PlayMusic("shopAmbience");
+        yield return new WaitForSeconds(2);
+        PlayMusic("ShopTheme", false);
+    }
+
+    IEnumerator IntroMusic() {
+        yield return new WaitForSecondsRealtime(2);
+    }
 
     private void LoadClipsMusic() {
         clipsMusic["shopAmbience"] = Resources.Load<AudioClip>("Music/supermarket-ambience-17419");
