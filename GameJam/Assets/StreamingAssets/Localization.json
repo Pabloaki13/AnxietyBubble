@@ -1,0 +1,12 @@
+{
+    "en": {
+        "play": "Play",
+        "settings": "Settings",
+        "quit": "Quit"
+    },
+    "es": {
+        "play": "Jugar",
+        "settings": "Configuraciones",
+        "quit": "Salir"
+    }
+}
