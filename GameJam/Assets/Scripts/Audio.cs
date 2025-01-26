@@ -14,27 +14,6 @@ public class Audio : MonoBehaviour {
     Dictionary<string, AudioClip> clipsMusic = new Dictionary<string, AudioClip>();
     Dictionary<string, AudioClip> clipsSFX = new Dictionary<string, AudioClip>();
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.G)) {
-            PlaySFX("babycry");
-        }
-        if (Input.GetKeyDown(KeyCode.H)) {
-            PlaySFX("crowd");
-        }
-        if (Input.GetKeyDown(KeyCode.J)) {
-            PlaySFX("doorbell");
-        }
-        if (Input.GetKeyDown(KeyCode.K)) {
-            PlaySFX("steps");
-        }
-        if (Input.GetKeyDown(KeyCode.L)) {
-            PlaySFX("shopCardPush");
-        }
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            PlayMusic("Shop");
-        }
-    }
-
     private void Awake() {
         if (instance == null) instance = this;
         else { Destroy(gameObject); return; }
@@ -98,7 +77,7 @@ public class Audio : MonoBehaviour {
     private void LoadClipsSFX() {
         clipsSFX["babycry"] = Resources.Load<AudioClip>("SFX/baby-crying-64996");
         clipsSFX["mercadona"] = Resources.Load<AudioClip>("SFX/supermercadoost");
-        clipsSFX["steps"] = Resources.Load<AudioClip>("SFX/foot-steps-250627");
+        //clipsSFX["steps"] = Resources.Load<AudioClip>("SFX/foot-steps-250627");
         clipsSFX["shopCardPush"] = Resources.Load<AudioClip>("SFX/pushing-grocery-cart-63821");
 
         clipsSFX["doorbell"] = Resources.Load<AudioClip>("SFX/doorbell");
