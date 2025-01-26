@@ -81,6 +81,7 @@ public class Audio : MonoBehaviour {
 
     IEnumerator IntroMusic() {
         yield return new WaitForSecondsRealtime(2);
+        PlayMusic("nightindoor");
     }
 
     private void LoadClipsMusic() {
