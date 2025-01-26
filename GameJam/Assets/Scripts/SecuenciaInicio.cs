@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SecuenciaInicio : MonoBehaviour
 {
@@ -13,13 +14,15 @@ public class SecuenciaInicio : MonoBehaviour
     private float targetSize;       // Tamaño objetivo del zoom
     private float zoomSpeed = 0.5f;        // Velocidad calculada del zoom
     private bool isZooming = false; // Indica si está en proceso de zoom
-    // Start is called before the first frame update
+
+    public GameObject CanvasMenuACtion;
+
     void Start()
     {
         // Inicializar el tamaño objetivo con el tamaño actual de la cámara
         targetSize = GetComponent<Camera>().orthographic ? GetComponent<Camera>().orthographicSize : GetComponent<Camera>().fieldOfView;
         isZooming = true;
-        TextBack.SetActive(false);
+        TextBack.GetComponent<Image>().enabled = false;
     }
 
     // Update is called once per frame
@@ -42,8 +45,7 @@ public class SecuenciaInicio : MonoBehaviour
             if (Mathf.Approximately(newSize, maxSize))
             {
                 isZooming = false;
-                this.GetComponent<Dialogs>().type();
-                TextBack.SetActive(true);
+                CanvasMenuACtion.SetActive(true);
             }
         }
     }

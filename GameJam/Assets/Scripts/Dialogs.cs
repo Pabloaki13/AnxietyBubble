@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Dialogs : MonoBehaviour
 {
@@ -9,9 +10,15 @@ public class Dialogs : MonoBehaviour
     public string Dialog;
     private string Written;
     float typeSpeed = 0.1f;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    bool isSkippable = false;
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (isSkippable) {
+                SceneManager.LoadScene("GameScene");
+            }
+        }
         
     }
 
@@ -34,5 +41,6 @@ public class Dialogs : MonoBehaviour
             else
                 yield return new WaitForSeconds(typeSpeed);
         }
+        isSkippable = true;
     }
 }

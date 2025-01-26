@@ -50,12 +50,18 @@ public class Audio : MonoBehaviour {
         //StartCoroutine("music"); //Ex: Multiple music plays feature (if not waiting for scene load, all audio sources say ".isPlaying = true")
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+    }
+
     //if not waiting, all audio souces say '.isPlaying = true', no joke
     IEnumerator ShoppingMusic() { 
         yield return new WaitForSeconds(2);
         PlayMusic("shopAmbience");
         yield return new WaitForSeconds(2);
-        PlayMusic("ShopTheme", false);
+        PlayMusic("shopTheme", false);
     }
 
     IEnumerator IntroMusic() {

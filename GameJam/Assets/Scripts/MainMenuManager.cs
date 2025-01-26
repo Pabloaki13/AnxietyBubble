@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public GameObject CanvasMainMenu;
+    public GameObject DialogBackground;
+    public GameObject Dialog;
+
     public void PlayGame()
     {
-        // Load the next scene (e.g., "GameScene")
-        SceneManager.LoadScene("GameScene");
+        DialogBackground.GetComponent<Image>().enabled = true;
+        Dialog.GetComponent<Dialogs>().type();
+        CanvasMainMenu.SetActive(false);
     }
 
     public void QuitGame()
