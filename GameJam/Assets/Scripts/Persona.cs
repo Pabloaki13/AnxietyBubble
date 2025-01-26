@@ -11,11 +11,14 @@ public class Persona : MonoBehaviour
     public GameObject[] waypoints;
     public float stoppingDistance = 0.1f;
     int currentWaypoint = 0;
+    bool pathing = false;
     NavMeshAgent agent;
+    GameObject Puerta;
 
     // Start is called before the first frame update
     void Start()
     {
+        Puerta = GameObject.Find("Puerta movil");
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -23,6 +26,7 @@ public class Persona : MonoBehaviour
 
     void Update()
     {
+        if (pathing) {
         // Comprobar si ha llegado al destino
         if (!agent.pathPending && agent.remainingDistance <= stoppingDistance)
         { 
@@ -40,13 +44,35 @@ public class Persona : MonoBehaviour
                     break;
             }
         }
+        }
+        else 
+        {
+            //this.gameObject.SetActive(false);
+            int RandWaypoint = Random.Range(0, 1000);
+            Debug.Log(RandWaypoint);
+            if (RandWaypoint == 0)
+            {
+                //this.gameObject.SetActive(true);
+                pathing = true;
+                //Puerta.GetComponent<Puertamovil>().OpenDoorSequence();
+            }
+            
+        }
+               
+    
     }
 
     //Pasa por los puntos en orden y de uno en uno
     void Patrol()
     {
+        if (currentWaypoint == 1)
+        {
+            Puerta.GetComponent<Puertamovil>().OpenDoorSequence();
+        }
         if (currentWaypoint >= waypoints.Length)
         {
+            Puerta.GetComponent<Puertamovil>().OpenDoorSequence();
+            pathing = false;
             currentWaypoint = 0;
         }
         agent.SetDestination(waypoints[currentWaypoint].transform.position);
@@ -58,7 +84,7 @@ public class Persona : MonoBehaviour
     void RandomMove()
     {
         int maxWaypoint = waypoints.Length;
-        int RandWaypoint = Random.Range(0, maxWaypoint - 1);
+        int RandWaypoint = Random.Range(2, maxWaypoint - 1);
 
         agent.SetDestination(waypoints[RandWaypoint].transform.position);
     }
